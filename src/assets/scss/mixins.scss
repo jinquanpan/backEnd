@@ -1,0 +1,11 @@
+@mixin muiword($n:3) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $n;
+  overflow: hidden;
+}
+@mixin oneword {
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
