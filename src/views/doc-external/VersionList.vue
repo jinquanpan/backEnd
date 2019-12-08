@@ -23,6 +23,10 @@
           prop="createTime"
         />
         <el-table-column
+          label="作废时间"
+          prop="invalidTime"
+        />
+        <el-table-column
           label="文件类型"
           prop="externalType"
         />
@@ -73,10 +77,12 @@ export default {
     getList() {
       if (!this.id) return
       this.listLoading = true
-      console.log('fileNo', this.fileNo)
+
+      // console.log('fileNo', this.fileNo)
       docExternalVersions(this.id).then((res) => {
         this.list = res
         this.listLoading = false
+        console.log(res)
       }).catch(() => {
         this.listLoading = false
       })

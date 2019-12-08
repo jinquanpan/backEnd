@@ -6,49 +6,54 @@ import 'nprogress/nprogress.css'
 import homeRoutes from './homeRoutes'
 import VueRouter from 'vue-router'
 import getPageTitle from '@/util/get-page-title'
+import Layout from '@/views/common/layout/layout'
+import RouterView from '@/router/RouterView'
 
 Vue.use(Router)
-const getComponent = (name, component) => () => import(`@/views/${name}/${component || name}`)
+const getComponent = (name) => () => import(`@/views/${name}`)
 var router = new VueRouter({
   routes: [
     {
       path: '/login',
       name: 'login',
-      component: getComponent('login', 'index')
+      component: getComponent('common/login')
     },
     {
       path: '/403',
-      component: getComponent('error', '403'),
-      meta: {
-        title: '403'
-      }
+      component: getComponent('common/error/403'),
+      meta: { title: '403' }
     },
     {
       path: '/404',
-      component: getComponent('error', '404'),
-      meta: {
-        title: '404'
-      }
+      component: getComponent('common/error/404'),
+      meta: { title: '404' }
     },
     {
       path: '/test',
-      component: () => import('@/views/test')
+      component: () => getComponent('common/test')
     },
     {
       path: '/pdf',
-      component: () => import('@/views/pdf')
-    },
-    {
-      path: '/pdf2',
-      component: () => import('@/views/pdf/pdf2')
-    },
-    {
-      path: '/pdf3',
-      component: () => import('@/views/pdf/pdf3')
+      redirect: '/pdf/1',
+      component: RouterView,
+      children: [
+        {
+          path: '/1',
+          component: () => getComponent('common/pdf')
+        },
+        {
+          path: '/2',
+          component: getComponent('common/pdf/pdf2')
+        },
+        {
+          path: '/3',
+          component: getComponent('common/pdf/pdf3')
+        }
+      ]
     },
     {
       path: '/',
-      component: () => import('@/views/layout/layout'),
+      component: Layout,
       redirect: '/home',
       children: homeRoutes
     }

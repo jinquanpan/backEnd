@@ -1,6 +1,6 @@
 <template>
   <span class="file-icon-component" @click="$emit('click')">
-    <i :class="['iconfont', 'file-icon', extIcon]" />
+    <i :class="['iconfont', 'file-icon', fileIcon]" />
     <span>{{ name }}</span>
   </span>
 </template>
@@ -12,26 +12,26 @@ export default {
       type: String,
       default: ''
     },
-    folder: {
-      type: [String, Boolean, Number],
-      default: ''
+    isFile: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
-    extIcon() {
+    fileIcon() {
       const lastIndex = this.name.lastIndexOf('.')
-      if (this.folder || lastIndex === -1) {
+      if (!this.isFile || lastIndex === -1) {
         return 'icon-folder2'
       }
       const ext = this.name.substr(lastIndex + 1)
-      var extArr = [
+      const arr = [
         { label: 'doc,docx', icon: 'icon-word' },
         { label: 'xls,xlsx', icon: 'icon-excel' },
-        { label: 'ppt', icon: 'icon-ppt' },
+        { label: 'ppt,pptx', icon: 'icon-ppt' },
         { label: 'pdf', icon: 'icon-pdf' }
       ]
-      var result = ''
-      extArr.map(item => {
+      let result = ''
+      arr.map(item => {
         if (item.label.indexOf(ext) > -1) {
           result = item.icon
         }

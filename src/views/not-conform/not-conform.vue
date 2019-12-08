@@ -40,14 +40,14 @@
         @click="handleBack"
       >返回上级文件夹</el-button>
       <el-button
-        v-if="hasPermission('doc-control:file-list:create')"
+        v-if="$hasPermission('doc-control:file-list:create')"
         icon="el-icon-circle-plus-outline"
         size="mini"
         type="primary"
         @click="handleAddFolder()"
       >新建文件夹</el-button>
       <el-button
-        v-if="hasPermission('doc-control:file-list:publish')"
+        v-if="$hasPermission('doc-control:file-list:publish')"
         icon="el-icon-upload"
         size="mini"
         type="primary"
@@ -92,7 +92,7 @@
           <template slot-scope="{row}">
             <el-button v-if="!row.isFile" type="primary" size="mini" @click.stop="handleAddFolder(row)">重命名</el-button>
             <el-button
-              v-if="!row.isFile && hasPermission('doc-control:file-list:delete')"
+              v-if="!row.isFile && $hasPermission('doc-control:file-list:delete')"
               type="danger"
               size="mini"
               @click.stop="handleDelFolder(row)"
@@ -105,19 +105,19 @@
                 @click.stop="handleReAudit(row)"
               >升级</el-button>
               <el-button
-                v-if="hasPermission('doc-control:file-list:version')"
+                v-if="$hasPermission('doc-control:file-list:version')"
                 type="success"
                 size="mini"
                 @click.stop="getVersions(row)"
               >版本</el-button>
               <el-button
-                v-if="hasPermission('doc-control:file-list:download')"
+                v-if="$hasPermission('doc-control:file-list:download')"
                 type="warning"
                 size="mini"
                 @click.stop="handleDownload(row)"
               >下载</el-button>
               <el-button
-                v-if="hasPermission('doc-control:file-list:delete')"
+                v-if="$hasPermission('doc-control:file-list:delete')"
                 size="mini"
                 type="danger"
                 @click.stop="handleDelFile(row)"
@@ -326,7 +326,7 @@ export default {
       }
     },
     handleAddFolder(row) {
-      this.prompt({
+      this.$myPrompt({
         title: `${row ? '编辑' : '新增'}文件夹`,
         message: '文件夹名称',
         inputValue: row ? row.folderName : '',
@@ -354,7 +354,7 @@ export default {
       })
     },
     handleDelFolder(row) {
-      this.delConfirm('此文件夹', (done) => {
+      this.$delConfirm(row.folderName, (done) => {
         docControlDeleteFolder({ folderId: row.folderId }).then(() => {
           done()
           this.getList()
@@ -362,7 +362,7 @@ export default {
       })
     },
     handleDelFile(row) {
-      this.delConfirm('此文件', (done) => {
+      this.$delConfirm(row.fileName, (done) => {
         docControlDelFile({
           docControlId: row.docControlId
         }).then(() => {

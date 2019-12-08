@@ -3,12 +3,22 @@
 </template>
 
 <script>
+const defaultLabelWidth = 90
 export default {
   name: 'MyRow',
+  provide() {
+    return {
+      myRow: this
+    }
+  },
   props: {
     gutter: {
       type: Number,
       default: 30
+    },
+    labelWidth: {
+      type: [Number, String],
+      default: defaultLabelWidth
     }
   }
 }

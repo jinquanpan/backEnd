@@ -7,36 +7,12 @@ import router from '@/router/router'
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   withCredentials: true, // send cookies when cross-domain requests
-  timeout: 1000 * 60 * 5, // 5 minutes request timeout
-  headers: {
-    post: {
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-    }
-  }
+  timeout: 1000 * 60 * 5
 })
 
 // request interceptor
 service.interceptors.request.use(
   config => {
-    // console.log(config);
-    // if (config.method === 'get') {
-    //   let newParams = {}
-    //   for (let i in config.params) {
-    //     if (config.params[i]) {
-    //       newParams[i] = config.params[i]
-    //     }
-    //   }
-    //   config.params = newParams
-    // }
-    // if (config.method ==='post') {
-    //   var newData = {}
-    //   for(let i in config.data) {
-    //     if (config.data[i]) {
-    //       newData[i] = config.data[i]
-    //     }
-    //   }
-    //   config.data = newData
-    // }
     return config
   },
   error => {

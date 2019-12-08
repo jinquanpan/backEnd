@@ -1,39 +1,19 @@
 <template>
-  <el-table
-    :data="tableData3"
-    height="250"
-    border
-    style="width: 100%"
-  >
-    <el-table-column
-      prop="name"
-      label="操作员"
-      width="180"
-    />
-    <el-table-column
-      prop="name"
-      label="操作员姓名"
-      width="180"
-    />
-    <el-table-column
-      prop="operate"
-      label="操作类型"
-      width="180"
-    />
-    <el-table-column
-      prop="date"
-      label="操作日期"
-      width="180"
-    />
-    <el-table-column
-      prop="address"
-      label="手机号码"
-    />
-    <el-table-column
-      prop="email"
-      label="邮箱"
-    />
-  </el-table>
+  <el-card>
+    <el-table
+            :data="tableData3"
+            height="250"
+            border
+            style="width: 100%"
+    >
+      <el-table-column prop="name" label="操作员" width="180" />
+      <el-table-column prop="name" label="操作员姓名" width="180" />
+      <el-table-column prop="operate" label="操作类型" width="180" />
+      <el-table-column prop="date" label="操作日期" width="180" />
+      <el-table-column prop="address" label="手机号码" />
+      <el-table-column prop="email" label="邮箱" />
+    </el-table>
+  </el-card>
 </template>
 
 <script>

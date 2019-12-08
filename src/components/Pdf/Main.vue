@@ -1,8 +1,10 @@
 <template>
-  <div v-show="visible" id="mypdf" class="pdf">
-    <iframe :src="src" style="width:100%;height: 100%" />
-    <i class="el-icon-close" @click="visible = false" />
-  </div>
+  <transition name="fade">
+    <div v-show="visible" id="mypdf" class="pdf-container">
+      <iframe :src="src" style="width:100%;height: 100%" />
+      <i class="el-icon-close" @click="visible = false" />
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -18,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .pdf{
+  .pdf-container{
     width:100%;
     height:100%;
     position: fixed;

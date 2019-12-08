@@ -1,59 +1,73 @@
 // 全部菜单
 export const menu = [{
-  icon: 'el-icon-news',
+  icon: 'el-icon-s-home',
   index: '/home',
   title: '首页'
 },
 {
-  icon: 'el-icon-edit',
+  icon: 'el-icon-s-platform',
   index: '/workbench',
   title: '我的工作台',
   // 我的控制台
   subs: [
     {
-    // icon: "el-icon-news",
-      index: '/workbench/auth-manage',
+      index: '/workbench/doc-control',
       title: '受控文件',
       show: true,
       // 满意度调查
       subs: [{
-        index: '/workbench/wait-compile',
+        index: '/workbench/doc-control/wait-compile',
         title: '待编制列表'
       }, {
-        index: '/workbench/wait-approval',
+        index: '/workbench/doc-control/wait-approval',
         title: '待审批列表'
-      },
-      {
-        index: '/workbench/wait-ratify',
+      }, {
+        index: '/workbench/doc-control/wait-ratify',
         title: '待批准列表'
       }]
     },
     {
-      // icon: "not_conformity",
-      index: '/not_conformity',
-      title: '不符合项',
+      index: '/workbench/doc-audit-manage',
+      title: '管审文件',
       show: true,
       // 满意度调查
       subs: [{
-        index: '/workbench/not_conformity/list-confirm',
-        title: '待确认列表'
-      },
-      {
-        index: '/workbench/not_conformity/list-Assign',
-        title: '待指派列表'
-      },
-      {
-        index: '/workbench/not_conformity/list-Responsible',
-        title: '待负责列表'
-      },
-      {
-        index: '/workbench/not_conformity/list-Verification',
-        title: '待验证列表'
-      }
-      ]
+        index: '/workbench/doc-audit-manage/wait-compile',
+        title: '待编制列表'
+      }, {
+        index: '/workbench/doc-audit-manage/wait-approval',
+        title: '待审批列表'
+      }, {
+        index: '/workbench/doc-audit-manage/wait-ratify',
+        title: '待批准列表'
+      }]
     },
     {
-    // icon: "el-icon-news",
+      index: '/workbench/doc-audit-internal',
+      title: '内审文件',
+      show: true,
+      // 满意度调查
+      subs: [{
+        index: '/workbench/doc-audit-internal/wait-compile',
+        title: '待编制列表'
+      }, {
+        index: '/workbench/doc-audit-internal/wait-approval',
+        title: '待审批列表'
+      }, {
+        index: '/workbench/doc-audit-internal/wait-ratify',
+        title: '待批准列表'
+      }]
+    },
+    {
+      index: '/workbench/not-conform',
+      title: '不符合项',
+      show: true,
+      subs: [{
+        index: '/workbench/not-conform/wait-dispose',
+        title: '待处理列表'
+      }]
+    },
+    {
       index: '/auth-manage',
       title: '权限管理',
       show: true,
